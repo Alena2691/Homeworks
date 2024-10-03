@@ -5,7 +5,10 @@ class Vehicle:
         self.owner = owner
         self.__model = __model
         self.__engine_power = int(__engine_power)
-        self.__color = __color if __color in Vehicle.__COLOR_VARIANTS else 'grey'
+        if __color.lower() in Vehicle.__COLOR_VARIANTS:
+            self.color = __color.lower()
+        else:
+            self.color = 'grey'
 
     def get_model(self):
         return f'Модель: {self.__model}'
@@ -14,7 +17,7 @@ class Vehicle:
         return f'Мощность двигателя: {self. __engine_power}'
 
     def get_color(self):
-        return f'Цвет: {self.__color}'
+        return f'Цвет: {self.color}'
 
     def print_info(self):
         print(self.get_model())
@@ -23,8 +26,8 @@ class Vehicle:
         print(f'Владелец: {self.owner}')
 
     def set_color(self, new_color):
-        if new_color in Vehicle.__COLOR_VARIANTS:
-            self.__color = new_color
+        if new_color.lower() in Vehicle.__COLOR_VARIANTS:
+            self.color = new_color.lower()
         else:
             print(f'Нельзя сменить цвет на {new_color}')
 
